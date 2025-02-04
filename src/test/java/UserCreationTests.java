@@ -1,5 +1,8 @@
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static practicum.Constants.USER_EXIST_ERROR;
 
 public class UserCreationTests {
 
@@ -12,7 +15,16 @@ public class UserCreationTests {
 
     @Test
     public void uniqUserCreationTest(){
-        userSteps.getResponse().then().statusCode(200);
+        userSteps.verifyLoginResponse();
     }
 
+    @Test
+    public void createExistedUser(){
+        userSteps.registerUser().verifyUnsuccessResponse(403, USER_EXIST_ERROR);
+    }
+
+    @After
+    public void clear(){
+        userSteps.deleteUser();
+    }
 }

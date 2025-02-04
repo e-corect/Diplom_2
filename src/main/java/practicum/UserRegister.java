@@ -1,6 +1,6 @@
 package practicum;
 
-public class UserRegister extends UserLogin{
+public class UserRegister extends UserLogin {
 
     private String name;
 
@@ -11,5 +11,13 @@ public class UserRegister extends UserLogin{
 
     public String getName() {
         return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPwd() {
+        return password;
     }
 }

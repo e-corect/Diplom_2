@@ -4,7 +4,7 @@ import practicum.UserLogin;
 
 public class UserProfile {
     private boolean success;
-    private UserLogin user;
+    private UserNameMail user;
     private String accessToken;
     private String refreshToken;
 
@@ -16,7 +16,7 @@ public class UserProfile {
         return accessToken;
     }
 
-    public UserLogin getUser() {
+    public UserNameMail getUser() {
         return user;
     }
 
