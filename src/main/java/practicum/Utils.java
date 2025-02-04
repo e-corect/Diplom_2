@@ -23,9 +23,9 @@ public class Utils {
         Random rnd = new Random();
         StringBuilder sb = new StringBuilder();
         if (userName == null){
-            userName = generateFirstName();
+            userName = generateFirstName().toLowerCase();
         }
-        sb.append(userName + "." + generateLastName().toLowerCase());
+        sb.append(userName.toLowerCase() + "." + generateLastName().toLowerCase());
         sb.append(rnd.nextInt(100));
         sb.append("@");
         sb.append(String.format("hostname-%d.", rnd.nextInt(100)));

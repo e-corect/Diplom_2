@@ -8,4 +8,8 @@ public class UserRegister extends UserLogin{
         super(email, password);
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
 }
