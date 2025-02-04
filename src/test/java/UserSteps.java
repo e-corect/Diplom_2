@@ -17,11 +17,7 @@ public class UserSteps {
     private UserRegister userRegister;
 
     private UserApi userApi = new UserApi();
-
-    public Response getResponse() {
-        return response;
-    }
-
+    
     public UserSteps setUserRegister(UserRegister userRegister){
         this.userRegister = userRegister;
         return this;
@@ -44,12 +40,12 @@ public class UserSteps {
         userProfile = response.as(UserProfile.class);
         return this;
     }
-
+    @Step("Удаляем пользователя из системы")
     public UserSteps deleteUser(){
         response = userApi.deleteUser(userProfile.getAccessToken().split(" ")[1]);
         return this;
     }
-
+    @Step("Прооверяем ответ сервера ")
     public void verifyLoginResponse(){
         response.then().statusCode(200);
         Assert.assertTrue(response.as(UserProfile.class).isSuccess());
@@ -61,6 +57,7 @@ public class UserSteps {
     public void verifyUnsuccessResponse(Integer expectedStatusCode, String expectedErrorMessage){
 
         Assert.assertEquals(expectedStatusCode.intValue(), response.getStatusCode());
+        Assert.assertTrue(response.getBody().jsonPath().get("success"));
         Assert.assertEquals(expectedErrorMessage, response.getBody().jsonPath().get("message"));
     }
 }
