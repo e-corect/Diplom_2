@@ -15,19 +15,18 @@ public class UserLoginTests {
 
     @Test
     public void successfulLogin(){
-        userSteps.userLogin();
-        userSteps.verifySuccessfulResponse();
+        userSteps.userLogin().verifySuccessfulUserLoginResponse();
     }
 
     @Test
     public void unsuccessfulLugin(){
         userSteps.userLogin(userSteps.getUserRegister().getEmail()+"1",
-            userSteps.getUserRegister().getPwd()+"1");
-        userSteps.verifyUnsuccessfulResponse(401, INCORRECT_CREDENTIALS_ERROR);
+            userSteps.getUserRegister().getPwd()+"1")
+            .verifyUnsuccessfulResponse(401, INCORRECT_CREDENTIALS_ERROR);
     }
 
     @After
     public void clear(){
-        userSteps.deleteUser();
+        userSteps.deleteUser().getResponse().then().statusCode(202);
     }
 }

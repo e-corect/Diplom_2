@@ -5,11 +5,13 @@ import practicum.UserApi;
 import practicum.UserLogin;
 import practicum.UserRegister;
 import practicum.Utils;
+import practicum.response.UserNameMail;
 import practicum.response.UserProfile;
 
 import static practicum.Constants.USER_PWD;
 
 public class UserSteps {
+
 
     private Response response;
 
@@ -17,7 +19,13 @@ public class UserSteps {
 
     private UserRegister userRegister;
 
+    private UserNameMail userNameMail;
+
     private UserApi userApi = new UserApi();
+
+    public Response getResponse() {
+        return response;
+    }
 
     public UserRegister getUserRegister() {
         return userRegister;
@@ -39,6 +47,7 @@ public class UserSteps {
         response = userApi.userRegister(userRegister);
         return this;
     }
+
     @Step("Генерируем объект с данными пользователя и регистрируем его в системе")
     public UserSteps createAndRegisterUser(){
         response = createRandomUser().registerUser().response;
@@ -65,8 +74,30 @@ public class UserSteps {
         return this;
     }
 
-    @Step("Прооверяем ответ сервера ")
-    public void verifySuccessfulResponse(){
+    @Step("Изменяем (редактируем) поля профиля пользователя")
+    public UserSteps editUserData(){
+        userNameMail = new UserNameMail(userProfile.getUser().getEmail(), Utils.generateFirstName());
+        response = userApi.editUserData(userProfile.getAccessToken().split(" ")[1], userNameMail);
+        return this;
+    }
+
+    @Step("Изменяем (редактируем) поля профиля пользователя")
+    public UserSteps editUserDataNoAuth(){
+        response = userApi.editUserData("",
+            new UserNameMail(userProfile.getUser().getEmail(), Utils.generateFirstName()));
+        return this;
+    }
+
+    @Step("Проверяем профиль после редактирования")
+    public void verifyEditedProfile(){
+        Assert.assertEquals(200, response.getStatusCode());
+        Assert.assertTrue(response.getBody().jsonPath().get("success"));
+        Assert.assertEquals(userNameMail.getEmail(), response.getBody().jsonPath().get("user.email"));
+        Assert.assertEquals(userNameMail.getName(), response.getBody().jsonPath().get("user.name"));
+    }
+
+    @Step("Прооверяем ответ сервера")
+    public void verifySuccessfulUserLoginResponse(){
         response.then().statusCode(200);
         Assert.assertTrue(response.as(UserProfile.class).isSuccess());
         Assert.assertEquals(userRegister.getEmail(), response.as(UserProfile.class).getUser().getEmail());

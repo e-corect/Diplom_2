@@ -31,8 +31,8 @@ public abstract class BaseHTTPClient {
         return given().spec(baseRequestSpec).body(body).post(path).thenReturn();
     }
 
-    protected Response makePutRequest(String path, String token, Object body){
-        return given().spec(baseRequestSpec).auth().oauth2(token).body(body).put(path).thenReturn();
+    protected Response makePatchRequest(String path, String token, Object body){
+        return given().spec(baseRequestSpec).auth().oauth2(token).body(body).patch(path).thenReturn();
     }
 
     protected Response makeDeleteRequest(String path, String token){

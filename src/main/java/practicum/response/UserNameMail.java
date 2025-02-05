@@ -2,9 +2,14 @@ package practicum.response;
 
 public class UserNameMail {
 
+    private String email;
+
     private String name;
 
-    private String email;
+    public UserNameMail(String email, String name) {
+        this.email = email;
+        this.name = name;
+    }
 
     public String getEmail() {
         return email;

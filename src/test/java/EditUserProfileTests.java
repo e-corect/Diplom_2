@@ -2,9 +2,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static practicum.Constants.USER_EXIST_ERROR;
+import static practicum.Constants.NOT_AUTHORISED_ERROR;
 
-public class UserCreationTests {
+public class EditUserProfileTests {
 
     private UserSteps userSteps = new UserSteps();
 
@@ -14,13 +14,13 @@ public class UserCreationTests {
     }
 
     @Test
-    public void uniqUserCreationTest(){
-        userSteps.verifySuccessfulUserLoginResponse();
+    public void editUserProfileTest(){
+        userSteps.editUserData().verifyEditedProfile();
     }
 
     @Test
-    public void createExistedUser(){
-        userSteps.registerUser().verifyUnsuccessfulResponse(403, USER_EXIST_ERROR);
+    public void notEditUserProfileTest(){
+        userSteps.editUserDataNoAuth().verifyUnsuccessfulResponse(401, NOT_AUTHORISED_ERROR);
     }
 
     @After

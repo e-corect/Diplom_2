@@ -1,7 +1,7 @@
 package practicum;
 
 import io.restassured.response.Response;
-import practicum.response.UserProfile;
+import practicum.response.UserNameMail;
 
 import static practicum.Constants.*;
 
@@ -19,7 +19,7 @@ public class UserApi extends BaseHTTPClient {
         return makeDeleteRequest(AUTH_USER_PATH, authToken);
     }
 
-    public Response refreshUserData(String authToken, UserRegister body){
-        return makePutRequest(AUTH_USER_PATH, authToken, body);
+    public Response editUserData(String authToken, UserNameMail body){
+        return makePatchRequest(AUTH_USER_PATH, authToken, body);
     }
 }

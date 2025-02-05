@@ -1,7 +1,5 @@
 package practicum.response;
 
-import practicum.UserLogin;
-
 public class UserProfile {
     private boolean success;
     private UserNameMail user;

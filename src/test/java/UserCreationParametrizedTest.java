@@ -32,8 +32,7 @@ public class UserCreationParametrizedTest {
 
     @Before
     public void prepare(){
-        userSteps.setUserRegister(userRegisterObj);
-        userSteps.registerUser();
+        userSteps.setUserRegister(userRegisterObj).registerUser();
     }
 
     @Test
