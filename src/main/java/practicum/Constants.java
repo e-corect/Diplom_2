@@ -26,4 +26,5 @@ public class Constants {
 
     public static final String USER_EXIST_ERROR = "User already exists";
     public static final String REQUIRED_FIELDS_ERROR = "Email, password and name are required fields";
+    public static final String INCORRECT_CREDENTIALS_ERROR = "email or password are incorrect";
 }

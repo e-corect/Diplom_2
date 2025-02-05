@@ -2,6 +2,7 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import practicum.UserApi;
+import practicum.UserLogin;
 import practicum.UserRegister;
 import practicum.Utils;
 import practicum.response.UserProfile;
@@ -17,7 +18,11 @@ public class UserSteps {
     private UserRegister userRegister;
 
     private UserApi userApi = new UserApi();
-    
+
+    public UserRegister getUserRegister() {
+        return userRegister;
+    }
+
     public UserSteps setUserRegister(UserRegister userRegister){
         this.userRegister = userRegister;
         return this;
@@ -45,8 +50,23 @@ public class UserSteps {
         response = userApi.deleteUser(userProfile.getAccessToken().split(" ")[1]);
         return this;
     }
+
+    @Step("Аутентификация пользователя в системе. Данные берутся из объекта UserSteps")
+    public UserSteps userLogin(){
+        UserLogin body = new UserLogin(userRegister.getEmail(), userRegister.getPwd());
+        response = userApi.userLogin(body);
+        return this;
+    }
+
+    @Step("Аутентификация пользователя в системе. Данные передаются в параметрах метода")
+    public UserSteps userLogin(String login, String pwd){
+        UserLogin body = new UserLogin(login, pwd);
+        response = userApi.userLogin(body);
+        return this;
+    }
+
     @Step("Прооверяем ответ сервера ")
-    public void verifyLoginResponse(){
+    public void verifySuccessfulResponse(){
         response.then().statusCode(200);
         Assert.assertTrue(response.as(UserProfile.class).isSuccess());
         Assert.assertEquals(userRegister.getEmail(), response.as(UserProfile.class).getUser().getEmail());
@@ -54,10 +74,10 @@ public class UserSteps {
     }
 
     @Step("Проверка неуспешного ответа сервера на соответствие ожидаемым критериям")
-    public void verifyUnsuccessResponse(Integer expectedStatusCode, String expectedErrorMessage){
+    public void verifyUnsuccessfulResponse(Integer expectedStatusCode, String expectedErrorMessage){
 
         Assert.assertEquals(expectedStatusCode.intValue(), response.getStatusCode());
-        Assert.assertTrue(response.getBody().jsonPath().get("success"));
+        Assert.assertFalse(response.getBody().jsonPath().get("success"));
         Assert.assertEquals(expectedErrorMessage, response.getBody().jsonPath().get("message"));
     }
 }

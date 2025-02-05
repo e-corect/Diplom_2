@@ -15,12 +15,12 @@ public class UserCreationTests {
 
     @Test
     public void uniqUserCreationTest(){
-        userSteps.verifyLoginResponse();
+        userSteps.verifySuccessfulResponse();
     }
 
     @Test
     public void createExistedUser(){
-        userSteps.registerUser().verifyUnsuccessResponse(403, USER_EXIST_ERROR);
+        userSteps.registerUser().verifyUnsuccessfulResponse(403, USER_EXIST_ERROR);
     }
 
     @After

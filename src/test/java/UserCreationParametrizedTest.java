@@ -1,14 +1,12 @@
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import practicum.Order;
 import practicum.UserRegister;
 import practicum.Utils;
 
-import static practicum.Constants.REQUIRED_FIELDS_ERROR;
 import static practicum.Constants.USER_PWD;
+import static practicum.Constants.REQUIRED_FIELDS_ERROR;
 
 @RunWith(Parameterized.class)
 public class UserCreationParametrizedTest {
@@ -40,6 +38,6 @@ public class UserCreationParametrizedTest {
 
     @Test
     public void createUserWithoutAttribute(){
-        userSteps.verifyUnsuccessResponse(403, REQUIRED_FIELDS_ERROR);
+        userSteps.verifyUnsuccessfulResponse(403, REQUIRED_FIELDS_ERROR);
     }
 }
