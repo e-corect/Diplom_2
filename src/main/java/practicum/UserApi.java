@@ -1,7 +1,7 @@
 package practicum;
 
 import io.restassured.response.Response;
-import practicum.response.UserNameMail;
+import practicum.responses.UserNameMail;
 
 import static practicum.Constants.*;
 

@@ -5,8 +5,8 @@ import practicum.UserApi;
 import practicum.UserLogin;
 import practicum.UserRegister;
 import practicum.Utils;
-import practicum.response.UserNameMail;
-import practicum.response.UserProfile;
+import practicum.responses.UserNameMail;
+import practicum.responses.UserProfile;
 
 import static practicum.Constants.USER_PWD;
 
@@ -106,7 +106,6 @@ public class UserSteps {
 
     @Step("Проверка неуспешного ответа сервера на соответствие ожидаемым критериям")
     public void verifyUnsuccessfulResponse(Integer expectedStatusCode, String expectedErrorMessage){
-
         Assert.assertEquals(expectedStatusCode.intValue(), response.getStatusCode());
         Assert.assertFalse(response.getBody().jsonPath().get("success"));
         Assert.assertEquals(expectedErrorMessage, response.getBody().jsonPath().get("message"));

@@ -19,6 +19,10 @@ public abstract class BaseHTTPClient {
             .addFilter(new ResponseLoggingFilter())
             .build();
 
+    protected Response makeGetRequest(String path){
+        return given().spec(baseRequestSpec).get(path).thenReturn();
+    }
+
     protected Response makeGetRequest(String path, String token){
         return given().spec(baseRequestSpec).auth().oauth2(token).get(path).thenReturn();
     }

@@ -1,4 +1,4 @@
-package practicum.response;
+package practicum.responses;
 
 public class UserNameMail {
 
