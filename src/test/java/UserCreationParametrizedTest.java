@@ -12,21 +12,20 @@ import static practicum.Constants.REQUIRED_FIELDS_ERROR;
 public class UserCreationParametrizedTest {
 
     private UserRegister userRegisterObj;
-    private Integer expectedStatusCode;
+
     private UserSteps userSteps = new UserSteps();
 
-    public UserCreationParametrizedTest(UserRegister userRegisterObj, Integer expectedStatusCode) {
+    public UserCreationParametrizedTest(UserRegister userRegisterObj) {
         this.userRegisterObj = userRegisterObj;
-        this.expectedStatusCode = expectedStatusCode;
     }
 
     @Parameterized.Parameters
     public static Object[][] getTestData() {
 
         return new Object[][]{
-                {new UserRegister(Utils.generateEmail(null), USER_PWD, ""), 403},
-                {new UserRegister("", USER_PWD, Utils.generateFirstName()), 403},
-                {new UserRegister(Utils.generateEmail(null), "", Utils.generateFirstName()), 403},
+                {new UserRegister("", USER_PWD, Utils.generateFirstName())},
+                {new UserRegister(Utils.generateEmail(null), "", Utils.generateFirstName())},
+                {new UserRegister(Utils.generateEmail(null), USER_PWD, "")}
         };
     }
 
