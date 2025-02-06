@@ -77,5 +77,10 @@ public class OrdersSteps {
             assertFalse(response.getBody().jsonPath().get("success"));}
     }
 
+    @Step("Получение заказов пользователя")
+    public OrdersSteps getUsersOrders(String authToken){
+        response = ordersApi.getUserOrders(authToken);
+        return this;
+    }
 
 }
