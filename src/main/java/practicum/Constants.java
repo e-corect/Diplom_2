@@ -25,7 +25,9 @@ public class Constants {
     public static final String USER_PWD = "qwertys1234567";
 
     public static final String USER_EXIST_ERROR = "User already exists";
+    public static final String NO_INGREDIENTS_ERROR = "Ingredient ids must be provided";
     public static final String REQUIRED_FIELDS_ERROR = "Email, password and name are required fields";
     public static final String NOT_AUTHORISED_ERROR = "You should be authorised";
     public static final String INCORRECT_CREDENTIALS_ERROR = "email or password are incorrect";
+    public static final String INTERNAL_SERVER_ERROR = "Internal Server Error";
 }

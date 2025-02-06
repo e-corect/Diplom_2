@@ -27,6 +27,10 @@ public class UserSteps {
         return response;
     }
 
+    public String getAuthToken(){
+        return userProfile.getAccessToken().split(" ")[1];
+    }
+
     public UserRegister getUserRegister() {
         return userRegister;
     }
