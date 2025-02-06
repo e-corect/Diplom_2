@@ -1,18 +1,17 @@
-import practicum.Order;
-import org.junit.Assert;
-import practicum.OrdersApi;
 import io.qameta.allure.Step;
+import io.restassured.response.Response;
+import org.junit.Assert;
+import practicum.Order;
+import practicum.OrdersApi;
 import practicum.Utils;
 import practicum.responses.Datum;
 import practicum.responses.Ingredients;
-import io.restassured.response.Response;
 
-import java.util.Random;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 
 public class OrdersSteps {
