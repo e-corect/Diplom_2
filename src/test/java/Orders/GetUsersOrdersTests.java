@@ -1,3 +1,8 @@
+package Orders;
+
+import Users.UserSteps;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,11 +25,15 @@ public class GetUsersOrdersTests {
     }
 
     @Test
+    @DisplayName("Заказы авторизованного пользователя")
+    @Description("Получаем заказы для авторизованного в системе пользователя")
     public void authorizedUsersOrdersTest(){
         ordersSteps.getUsersOrders(userSteps.getAuthToken()).verifySuccessResponse();
     }
 
     @Test
+    @DisplayName("Заказы неавторизованного пользователя")
+    @Description("Получаем заказы анонимным пользователем")
     public void unauthorizedUsersOrdersTest(){
         ordersSteps.getUsersOrders("").verifyUnSuccessResponse(401, NOT_AUTHORISED_ERROR);
     }

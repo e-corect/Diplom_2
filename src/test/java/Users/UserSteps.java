@@ -1,3 +1,5 @@
+package Users;
+
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.junit.Assert;
@@ -64,7 +66,7 @@ public class UserSteps {
         return this;
     }
 
-    @Step("Аутентификация пользователя в системе. Данные берутся из объекта UserSteps")
+    @Step("Аутентификация пользователя в системе. Данные берутся из объекта Users.UserSteps")
     public UserSteps userLogin(){
         UserLogin body = new UserLogin(userRegister.getEmail(), userRegister.getPwd());
         response = userApi.userLogin(body);

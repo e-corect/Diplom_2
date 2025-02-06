@@ -1,3 +1,5 @@
+package Users;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +23,6 @@ public class UserCreationParametrizedTest {
 
     @Parameterized.Parameters
     public static Object[][] getTestData() {
-
         return new Object[][]{
                 {new UserRegister("", USER_PWD, Utils.generateFirstName())},
                 {new UserRegister(Utils.generateEmail(null), "", Utils.generateFirstName())},
