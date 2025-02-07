@@ -1,5 +1,7 @@
 package Users;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,11 +18,15 @@ public class UserCreationTests {
     }
 
     @Test
+    @DisplayName("Успешное создание уникального пользователя")
+    @Description("Проверяем возможность создания в системе уникального пользователя")
     public void uniqUserCreationTest(){
         userSteps.verifySuccessfulUserLoginResponse();
     }
 
     @Test
+    @DisplayName("Проверка возможности повторного создания пользователя")
+    @Description("Проверяем возможность повторно создать в системе существующего пользователя")
     public void createExistedUser(){
         userSteps.registerUser().verifyUnsuccessfulResponse(403, USER_EXIST_ERROR);
     }

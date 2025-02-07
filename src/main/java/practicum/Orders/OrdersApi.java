@@ -1,6 +1,7 @@
-package practicum;
+package practicum.Orders;
 
 import io.restassured.response.Response;
+import practicum.BaseHTTPClient;
 
 import static practicum.Constants.INGREDIENTS_PATH;
 import static practicum.Constants.ORDERS_PATH;

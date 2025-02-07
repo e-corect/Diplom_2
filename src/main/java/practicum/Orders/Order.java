@@ -1,4 +1,4 @@
-package practicum;
+package practicum.Orders;
 
 import java.util.ArrayList;
 

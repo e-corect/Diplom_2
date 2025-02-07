@@ -1,4 +1,4 @@
-package practicum;
+package practicum.User;
 
 public class UserRegister extends UserLogin {
 

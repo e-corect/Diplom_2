@@ -1,6 +1,7 @@
-package practicum;
+package practicum.User;
 
 import io.restassured.response.Response;
+import practicum.BaseHTTPClient;
 import practicum.responses.UserNameMail;
 
 import static practicum.Constants.*;

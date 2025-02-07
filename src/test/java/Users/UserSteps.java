@@ -3,9 +3,9 @@ package Users;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.junit.Assert;
-import practicum.UserApi;
-import practicum.UserLogin;
-import practicum.UserRegister;
+import practicum.User.UserApi;
+import practicum.User.UserLogin;
+import practicum.User.UserRegister;
 import practicum.Utils;
 import practicum.responses.UserNameMail;
 import practicum.responses.UserProfile;
@@ -48,6 +48,7 @@ public class UserSteps {
         userRegister = new UserRegister(Utils.generateEmail(userName), USER_PWD, userName);
         return this;
     }
+
     @Step("Отправляем запрос на регистрацию пользователя в системе")
     public UserSteps registerUser(){
         response = userApi.userRegister(userRegister);
@@ -80,9 +81,16 @@ public class UserSteps {
         return this;
     }
 
-    @Step("Изменяем (редактируем) поля профиля пользователя")
-    public UserSteps editUserData(){
+    @Step("Изменяем (редактируем) имя пользователя")
+    public UserSteps editUserNameData(){
         userNameMail = new UserNameMail(userProfile.getUser().getEmail(), Utils.generateFirstName());
+        response = userApi.editUserData(userProfile.getAccessToken().split(" ")[1], userNameMail);
+        return this;
+    }
+
+    @Step("Изменяем (редактируем) email пользователя")
+    public UserSteps editUserEmailData(){
+        userNameMail = new UserNameMail(Utils.generateEmail(userProfile.getUser().getName()), userProfile.getUser().getName());
         response = userApi.editUserData(userProfile.getAccessToken().split(" ")[1], userNameMail);
         return this;
     }

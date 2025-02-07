@@ -1,10 +1,12 @@
 package Users;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import practicum.UserRegister;
+import practicum.User.UserRegister;
 import practicum.Utils;
 
 import static practicum.Constants.USER_PWD;
@@ -36,6 +38,8 @@ public class UserCreationParametrizedTest {
     }
 
     @Test
+    @DisplayName("Создаем пользователя без одного из атрибутов профиля")
+    @Description("Пытаемся создать пользователя, не заполнив одно из обязательных полей")
     public void createUserWithoutAttribute(){
         userSteps.verifyUnsuccessfulResponse(403, REQUIRED_FIELDS_ERROR);
     }

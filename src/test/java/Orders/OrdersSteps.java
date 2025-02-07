@@ -3,8 +3,8 @@ package Orders;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.junit.Assert;
-import practicum.Order;
-import practicum.OrdersApi;
+import practicum.Orders.Order;
+import practicum.Orders.OrdersApi;
 import practicum.Utils;
 import practicum.responses.Datum;
 import practicum.responses.Ingredients;
@@ -53,6 +53,7 @@ public class OrdersSteps {
         return this;
     }
 
+    @Step("Генерируем несуществующий идентификатор ингредиента и отправляем запрос на создание заказа")
     public OrdersSteps createOrderWithWrongIngredient(String authToken){
         ArrayList<String> ingredients = new ArrayList<>();
         ingredients.add(Utils.generateLastName().toLowerCase());
@@ -78,7 +79,7 @@ public class OrdersSteps {
             assertFalse(response.getBody().jsonPath().get("success"));}
     }
 
-    @Step("Получение заказов пользователя")
+    @Step("Получаем заказы пользователя")
     public OrdersSteps getUsersOrders(String authToken){
         response = ordersApi.getUserOrders(authToken);
         return this;
