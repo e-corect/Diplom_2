@@ -1,7 +1,10 @@
 package practicum.responses;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Datum {
-    private String _id;
+    @SerializedName("_id")
+    private String id;
     private String name;
     private String type;
     private Integer proteins;
@@ -10,11 +13,14 @@ public class Datum {
     private Integer calories;
     private Integer price;
     private String image;
-    private String image_mobile;
-    private String image_large;
-    private Integer __v;
+    @SerializedName("image_mobile")
+    private String imageMobile;
+    @SerializedName("image_large")
+    private String imageLarge;
+    @SerializedName("__v")
+    private Integer v;
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 }

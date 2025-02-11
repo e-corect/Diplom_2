@@ -30,7 +30,7 @@ public class OrdersSteps {
         Ingredients responseObj = response.as(Ingredients.class);
         ArrayList<String> ingredientsList = new ArrayList<>();
         for (Datum datum : responseObj.getData()){
-           ingredientsList.add(datum.get_id());
+           ingredientsList.add(datum.getId());
         }
         return ingredientsList;
     }

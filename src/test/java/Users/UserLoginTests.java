@@ -27,7 +27,7 @@ public class UserLoginTests {
     @Test
     @DisplayName("Проверка возможности войти в систему с неверными реквизитами")
     @Description("Проверяем ответ системы на попытку входа под неверными реквизитами пользователя")
-    public void unsuccessfulLugin(){
+    public void unsuccessfulLogin(){
         userSteps.userLogin(userSteps.getUserRegister().getEmail()+"1",
             userSteps.getUserRegister().getPwd()+"1")
             .verifyUnsuccessfulResponse(401, INCORRECT_CREDENTIALS_ERROR);
